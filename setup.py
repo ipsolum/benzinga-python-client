@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
 import setuptools
 setuptools.setup(
         name='benzinga',
-        version='1.21',
+        version='1.21.1',
         description='Python Client Library for Benzinga Data',
         author='Benzinga Developers',
         author_email='dev@benzinga.com',
@@ -12,7 +12,7 @@ setuptools.setup(
         packages=["benzinga"],
         install_requires=['requests',
                           "structlog",
-                          "urllib3==1.25.10"],
+                          "urllib3>=1.25.10"],
         long_description = long_description,
         long_description_content_type="text/markdown",
         classifiers=[
