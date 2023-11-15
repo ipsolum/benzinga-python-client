@@ -30,6 +30,7 @@ class Benzinga:
             "v1": "https://api.benzinga.com/api/v1/",
             "v1 opt": "https://api.benzinga.com/api/v1/signal/",
             "API v2": "https://api.benzinga.com/api/v2/",
+            "API v2.1": "https://api.benzinga.com/api/v2.1/",
             "Data api v2": "https://api.benzinga.io/dataapi/rest/v2/",
             "Data v2": "https://data-api.benzinga.com/rest/v2/",
             "V3": "https://data-api.benzinga.com/rest/v3/",
@@ -87,6 +88,7 @@ class Benzinga:
             string="API v1", env=env
         )  # this is not working for quoteDelayed
         v1_1 = self.__env_selection(string="API v1.v1", env=env)
+        v2_1 = self.__env_selection(string="API v2.1", env=env)
         mover = self.__env_selection(string="IO API", env=env)
 
         endpoint_type = {
@@ -99,7 +101,7 @@ class Benzinga:
             "instruments": "%s%s" % (self.url_dict["V3"], resource),
             "quoteDelayed": "%s%s" % (self.url_dict["v1"], resource),
             "logos": "%s%s" % (self.url_dict[v1_1], resource),
-            "fundamentals": "%s%s/%s" % (self.url_dict["V3"], resource, sub_resource),
+            "fundamentals": "%s%s/%s" % (self.url_dict[v2_1], resource, sub_resource),
             "ownership": "%s%s/%s" % (self.url_dict["V3"], resource, sub_resource),
             "movers": "%s%s" % (self.url_dict[mover], resource),
             "tickerDetail": "%s%s" % (self.url_dict["V3"], resource),
@@ -1104,7 +1106,7 @@ class Benzinga:
             ratios, alphaBeta
         """
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1150,7 +1152,7 @@ class Benzinga:
             company, financials such as balance sheet information, assets and liabilities
         """
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1189,7 +1191,7 @@ class Benzinga:
         """
 
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1224,7 +1226,7 @@ class Benzinga:
             different attributes of the earning ratios
         """
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1259,7 +1261,7 @@ class Benzinga:
             different attributes of the operation ratios
         """
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1295,7 +1297,7 @@ class Benzinga:
         """
 
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1331,7 +1333,7 @@ class Benzinga:
             different attributes of the earning reports.
         """
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1366,7 +1368,7 @@ class Benzinga:
             different attributes of the alpha beta.
         """
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1401,7 +1403,7 @@ class Benzinga:
             different attributes of the company profile.
         """
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1436,7 +1438,7 @@ class Benzinga:
             different attributes of the company.
         """
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1471,7 +1473,7 @@ class Benzinga:
             different attributes of the share class profile history.
         """
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
@@ -1508,7 +1510,7 @@ class Benzinga:
             different attributes of the asset classification.
         """
         params = {
-            "apikey": self.token,
+            "token": self.token,
             "symbols": company_tickers,
             "isin": isin,
             "cik": cik,
