@@ -201,6 +201,42 @@ class Benzinga:
             self.__check_status(err.response.status_code)
         return delayed_quote.json()
 
+    def delayed_quote_v2(self, company_tickers=None, isin=None, cik=None, env=0):
+        """Public Method: Delayed Quotes V2
+
+        Arguments:
+            Required - company_tickers (str)
+            Optional:
+            cik (str) - cik identifier
+            isin (str)
+
+        Returns:
+            date, previousClose, change, changePercent, fiftyTwoWeekHigh, fiftyTwoWeekLow,
+            currency, last, tradingHalted, volume, previousCloseDate
+
+        """
+        params = {
+            "token": self.token,
+            "symbols": company_tickers,
+            "isin": isin,
+            "cik": cik,
+        }
+        self.param_initiate.delayed_quote_check(params)
+        try:
+            delayedquote_url = self.__url_call("bars", env=env)
+            delayed_quote = requests_retry_session().get(
+                delayedquote_url, headers=self.headers, params=params, timeout=10
+            )
+            statement = "Status Code: {status_code} Endpoint: {endpoint}".format(
+                endpoint=delayed_quote.url, status_code=delayed_quote.status_code
+            )
+            if self.log:
+                log.info(statement)
+            self.__check_status(delayed_quote.status_code)
+        except requests.exceptions.RequestException as err:
+            self.__check_status(err.response.status_code)
+        return delayed_quote.json()
+
     def bars(self, company_tickers, date_from, date_to=None, interval=None, session=None):
         """Public Method: Benzinga Bars looks at detailed price values over a period of time.
 
