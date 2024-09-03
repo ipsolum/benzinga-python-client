@@ -100,6 +100,7 @@ class Benzinga:
             "autocomplete": "%s%s" % (self.url_dict["Data v2"], resource),
             "instruments": "%s%s" % (self.url_dict["V3"], resource),
             "quoteDelayed": "%s%s" % (self.url_dict["v1"], resource),
+            "quoteDelayed2": "%squoteDelayed" % (self.url_dict["API v2"], resource),
             "logos": "%s%s" % (self.url_dict[v1_1], resource),
             "fundamentals": "%s%s/%s" % (self.url_dict[v2_1], resource, sub_resource),
             "ownership": "%s%s/%s" % (self.url_dict["V3"], resource, sub_resource),
@@ -223,7 +224,7 @@ class Benzinga:
         }
         self.param_initiate.delayed_quote_check(params)
         try:
-            delayedquote_url = self.__url_call("bars", env=env)
+            delayedquote_url = self.__url_call("quoteDelayed", env=env)
             delayed_quote = requests_retry_session().get(
                 delayedquote_url, headers=self.headers, params=params, timeout=10
             )
